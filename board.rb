@@ -2,7 +2,7 @@ require "byebug"
 require_relative "tile"
 
 class Board
-  attr_reader :grid, :rows
+  attr_reader :grid
 
   def self.empty_grid
     Array.new(9) do
@@ -11,7 +11,6 @@ class Board
   end
 
   def self.from_file(filename)
-    debugger
     rows = File.readlines(filename).map(&:chomp)
     tiles = rows.map do |row|
       nums = row.split("").map { |char| Integer(char) }
@@ -37,6 +36,7 @@ class Board
   end
 
   def columns
+    debugger
     rows.transpose
   end
 
@@ -52,7 +52,7 @@ class Board
     grid.size
   end
 
-  alias_method :rows, :size
+  # alias_method :rows, :size
 
   def solved?
     # debugger
